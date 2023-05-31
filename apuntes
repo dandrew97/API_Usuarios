@@ -1,0 +1,6 @@
+orden gerarquico de desarrollo de la estructura de la api 
+
+models/userModel.js
+controllers/userController.js
+routes/userRoutes.js
+main.js
