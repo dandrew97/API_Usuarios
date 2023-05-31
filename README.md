@@ -1,8 +1,8 @@
-#API de Usuarios - Backend
+# API de Usuarios - Backend
 
 La API de Usuarios es un proyecto de backend desarrollado en Node.js que proporciona una interfaz para administrar y gestionar usuarios utilizando una base de datos MongoDB. Permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) en la colección de usuarios.
 
-#Características
+# Características
 - Registro de usuarios: Los usuarios pueden registrarse proporcionando su nombre de usuario, correo electrónico y contraseña.
 - Inicio de sesión: Los usuarios pueden iniciar sesión con su correo electrónico y contraseña para acceder a la API y realizar operaciones.
 - Obtención de información del usuario: La API permite obtener la información del usuario, como su nombre de usuario y correo electrónico.
