@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 //Url de mongo atlas
-const uri = 'mongodb+srv://admin:a7fykQ0XxwTOg35v@dbusers.9b0qcfy.mongodb.net/?retryWrites=true&w=majority';
+const uri = 'mongodb+srv://admin:1eGELnn2F7fguCWJ@dbusers.9b0qcfy.mongodb.net/?retryWrites=true&w=majority';
 
 mongoose.connect(uri,{useNewUrlParser:true, useUnifiedTopology:true
 })

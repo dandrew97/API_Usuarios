@@ -1,11 +1,18 @@
 // llamamos la libreria de express
 const express = require('express');
+const cors = requiere ('cors')
 const app = express(); // creamos la constante app que contenga todos los metodos y clases de express
 const port = 3000; // creación del puerto 
 const userRoutes = require('./routes/userRoutes'); // importamos la clase del fichero js llama userRoutes
 
 //IMPORTANTE: Con el require importamos cosas de java script
 
+app.use(cors(
+    {
+        //origin: 'http://localhost:4200", // Es mas recomendable utilizar la url, esta URL es la que aparece en angular
+        origin: '*' //Este asterisco se usa para que el cors pueda acceder desde cualquier url, no abra necesidad de especificar como en la linea anterior
+    }
+))
 // usamos una funcion middleware que permita convertir la base de datos tipo jason, que este mas ordenado y sea mas legible
 app.use(express.json());
 

@@ -9,11 +9,11 @@ const userController = require('../controllers/userController')
 
 router.get('/', userController.getAllUsers);
 
-router.post('/', userController.createUser);
+router.post('/create', userController.createUser);
 
-router.put('/:id', userController.updateUser);
+router.put('/update/:id', userController.updateUser);
 
-router.delete('/:id', userController.deleteUser);
+router.delete('/delete/:id', userController.deleteUser);
 
 router.post('/login', authController.authenticateUser)
 
