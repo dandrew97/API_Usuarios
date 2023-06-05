@@ -8,27 +8,37 @@ exports.getAllUsers = (req, res) => {
     .catch(err => res.status(500).json({error: err.message}))
 }
 
+//Crea el usuario
 //Forma de crear variables llamada estructuración de objeto que permite extraer valores de un objeto y asignarlos a una linea de codigo
-exports.createUser =(req, res) => {
-    const {username, email, password} = req.body;
+exports.createUser = (req, res) => {
+    const { username, email, password } = req.body;
     const saltRounds = 10; //Ahora debemos cifrar la contrasña
-    bcrypt.hash (plainPassword, saltRounds, function(err, hash) {
-        if(err) {
-            return res.status(500).json({error:err.message})
+  
+    userModel.findOne({ email: email }) // Buscar si el usuario ya existe por su correo electrónico
+      .then(existingUser => {
+        if (existingUser) {
+          return res.status(400).json({ message: 'User already exists' });
         }
-        else {
-            const newUser = new userModel ({
-                username, 
-                email, 
-                password 
+        //Funcion para cifrar la contraseña
+        bcrypt.hash(password, saltRounds, function(err, hash) {
+          if (err) {
+            return res.status(500).json({ error: err.message });
+          } else {
+            const newUser = new userModel({
+              username,
+              email,
+              password: hash // Guardar la contraseña cifrada
             });
+  
             newUser
-            .save()
-            .then(newUser => res.status(201).json({sucess: 'created'}))
-            .catch(err => res.status(500).json({message: 'An error has ocurred', err}))
-        }
-    })
-};
+              .save()
+              .then(newUser => res.status(201).json({ success: 'created' }))
+              .catch(err => res.status(500).json({ message: 'An error has occurred', err }));
+          }
+        });
+      })
+      .catch(err => res.status(500).json({ message: 'An error has occurred', err }));
+  };
 
 exports.updateUser = (req, res) => {
     const {id} = req.params;
