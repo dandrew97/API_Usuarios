@@ -17,9 +17,15 @@ exports.authenticateUser = (req, res) => {
             if(err){
                 res.status(500).json({error: err.message});
             } else if(result){
+                const payload = {
+                    userId: user._id,
+                    email: user.email,
+                    role: user.role,
+                }
                 //jwt
                 const token = jwt.sing( //cuerpo
-                    {userId:user._id}, 'secreto',
+                    payload,
+                    encodedSecrer,
                     { expiresIn: '1h' } //tiempo de expiracion
                 )
                 //Si la contraseña conincide el usuario se autentica exitosamente

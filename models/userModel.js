@@ -3,15 +3,19 @@ const mongoose = require('mongoose')
 //Url de mongo atlas
 const uri = 'mongodb+srv://admin:OQyvGu4aqYmEUnFd@usuarios.yivmizk.mongodb.net/?retryWrites=true&w=majority';
 
-mongoose.connect(uri,{useNewUrlParser:true, useUnifiedTopology:true
+mongoose.connect(uri,{
+    useNewUrlParser:true, 
+    useUnifiedTopology:true
 })
-.then(() => console.log("conexion exitosa de bd"))
-.catch(err => console.log("error al conectar bd", err));
+.then(() => console.log("Conexion exitosa a la base de datos"))
+.catch(err => console.log("Error al conectar con la base de datos", err));
 
 const userSchema = new mongoose.Schema({
-    username: {type: String, required: true},
-    email: {type: String, required: true},
-    password: {type: String, required: true}
+    username:   { type: String, required: true },
+    email:      { type: String, required: true} ,
+    password:   { type: String, required: true} ,
+    picture:    { type: String },
+    role:       { type: String, default:'user' },
 });
 
 module.exports = mongoose.model('Users', userSchema);

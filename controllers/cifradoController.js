@@ -1,3 +1,4 @@
+//Ejemplo basico del uso de bcrypt
 const bcrypt = require('bcrypt')
 
 //funcion que permite cifrar la contraseña cuando se crea el usuario originalmente
@@ -8,15 +9,17 @@ bcrypt.hash(plainPassword, saltRounds, function(err, hash){
     else { console.log( 'Se creó el hash de la contraseña'. hash ) }
 });
 
-//Funcion que permite autenticar el usuario
+//Funcion que permite autenticar el usuario con el hash
 const hashredPassword = '$2b$10$'
 const loginPassword = 'password123'
-bcrypt.compare(hashredPassword, loginPassword, function(err, result) { //el compare: recibe 3 parametros: el hash, la contraseña y el callback
+bcrypt.compare(loginPassword, hashredPassword, function(err, result) { //el compare: recibe 3 parametros: el hash, la contraseña y el callback
     if(err){
         console.log(err);
-    } else if(result){
+    } 
+    else if(result){
         console.log('La contraseña es valida');
-    }else {
+    }
+    else {
         console.log('La contrasela es invalida')
     }
 })
